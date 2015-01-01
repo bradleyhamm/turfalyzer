@@ -3,30 +3,22 @@
   <head>
   </head>
   <body>
-    <script type="text/javascript" src="combination_gen.js"></script>
-    <script type="text/javascript" src="combinatorics.js"></script>
+    <script type="text/javascript" src="js/turf.js"></script>
     <script type="text/javascript">
     (function () {
 
-      window.test = function (method, n, k) {
-        var start = new Date();
-        window['test'+method](n, k);
-        console.log((new Date() - start)/1000);
-      };
+        var data = [];
+        var k = 5;
+        var count = 20;
+        var worker = new Worker("turf.js");
 
-      window.testNzonbi = function (n, k) {
-        for (var i = 0; i < n; i++) {
-          combination_gen.add(String(i));
-        }
-        combination_gen.k = k;
-        combination_gen.build()
-        console.log(combination_gen.get_combination());
-        while (combination_gen.next()) {
-          console.log(combination_gen.get_combination());
-        }
-      };
+        worker.postMessage();
 
-      test('Nzonbi', 50, 10);
+        worker.postMessage({
+            k: k,
+            data: data,
+            count:
+        });
     })();
     </script>
   </body>
